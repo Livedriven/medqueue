@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedQueue | Gerenciamento de Pacientes</title>
+</head>
+
+<body>
+    <header class="header-container">
+        <button type="button" id="aside-toggle" class="aside-toggle" aria-label="Abrir ou fechar menu lateral"
+            aria-controls="aside-menu" aria-expanded="true">
+            <img src="src/assets/sidebar-ativo.png" class="aside-icon-open" alt="">
+            <img src="src/assets/sidebar-inativo.png" class="aside-icon-fechado inativo" alt="">
+        </button>
+
+        <div class="perfil-container">
+            <button type="button" class="notification-button" aria-label="Ver notificações">
+                <img src="src/assets/notificacao.png" alt="" id="notificacao">
+            </button>
+
+            <div class="container-user">
+                <p class="user-name">Dr. Richard Henrique</p>
+                <p class="page-subtitle">Clínica Geral</p>
+            </div>
+        </div>
+    </header>
+
+    <aside class="aside-menu" id="aside-menu" aria-label="Menu lateral principal">
+        <div class="container-title-menu-aside">
+            <div>
+                <a href="#" class="page-title-aside" aria-label="Ir para o dashboard do MedQueue">MedQueue</a>
+                <p class="page-subtitle-aside">Sistema de Gerenciamento Hospitalar</p>
+            </div>
+        </div>
+
+        <nav class="nav-menu-aside" aria-label="Navegação principal">
+            <h2 class="title-nav">Menu principal</h2>
+            <ul class="lista-navegacao">
+                <li class="link-navegacao atual">
+                    <a href="#" aria-current="page">Dashboard</a>
+                </li>
+                <li class="link-navegacao">
+                    <a href="#">Agenda</a>
+                </li>
+                <li class="link-navegacao">
+                    <a href="#">Relatórios</a>
+                </li>
+                <li class="link-navegacao">
+                    <a href="#">Configurações</a>
+                </li>
+            </ul>
+
+            <h2 class="title-nav">Suporte</h2>
+            <ul class="lista-navegacao">
+                <li class="link-navegacao">
+                    <a href="#">Ajuda</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="perfil-container-aside">
+            <div class="container-user-aside">
+                <p class="user-name">Dr. Richard Henrique</p>
+                <p class="page-subtitle">Clínica Geral</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-container">
+        <header class="header-main-container">
+            <h1 class="page-title">Pacientes</h1>
+            <p class="page-subtitle">Gerenciamento de todos os pacientes internados</p>
+        </header>
+
+        <section class="container-parametros " aria-label="Busca, filtros e ações de pacientes">
+            <label for="buscas" class="label-buscas">
+                <img src="src/assets/lupa.png" id="lupa-buscas" alt="">
+                <span class="sr-only">Buscar pacientes</span>
+                <input type="search" id="buscas" name="buscas" placeholder="Buscar por nome, CPF, ala ou médico"
+                    minlength="3" maxlength="200" autocomplete="off">
+            </label>
+
+            <button type="button" id="btn-filtro" class="btn-filtro" aria-expanded="false"
+                aria-controls="container-filtros">
+                <img src="src/assets/filtro.png" alt="">
+                <span>Filtros</span>
+            </button>
+
+            <div class="toolbar-container " aria-label="Alternar visualização dos pacientes">
+                <div class="toolbar">
+                    <input type="radio" name="view-toggle" id="grid-view" checked>
+                    <label for="grid-view" class="toggle-btn">
+                        <img src="src/assets/quadrados.png" class="icon icon-active" alt="">
+                        <img src="src/assets/quadrados-preto.png" class="icon icon-inactive" alt="">
+                        <span class="sr-only">Visualização em grade</span>
+                    </label>
+
+                    <input type="radio" name="view-toggle" id="view-list">
+                    <label for="view-list" class="toggle-btn">
+                        <img src="src/assets/lista-de-reproducao-branca.png" class="icon icon-active" alt="">
+                        <img src="src/assets/lista-de-reproducao.png" class="icon icon-inactive" alt="">
+                        <span class="sr-only">Visualização em lista</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" class="button-paciente" id="paciente-btn">
+                <img src="src/assets/mais.png" alt="">
+                <span>Novo Paciente</span>
+            </button>
+
+            <fieldset class="container-filtros inativo" id="container-filtros">
+                <legend class="title-filtro">Filtrar por status:</legend>
+
+                <div class="container-parametros-filtros">
+                    <label class="label-filtro label-todos" for="todos">
+                        <input type="radio" class="filtro-radio inativo" id="todos" name="filtro" value="todos" checked>
+                        Todos
+                    </label>
+
+                    <label class="label-filtro label-critico" for="critico">
+                        <span class="bolinha critico-filter" aria-hidden="true"></span>
+                        <input type="radio" class="filtro-radio inativo" id="critico" name="filtro" value="critico">
+                        Crítico
+                    </label>
+
+                    <label class="label-filtro label-urgente" for="urgente">
+                        <span class="bolinha urgente-filter" aria-hidden="true"></span>
+                        <input type="radio" class="filtro-radio inativo" id="urgente" name="filtro" value="urgente">
+                        Urgente
+                    </label>
+
+                    <label class="label-filtro label-observacao" for="em-observacao">
+                        <span class="bolinha observacao-filter" aria-hidden="true"></span>
+                        <input type="radio" class="filtro-radio inativo" id="em-observacao" name="filtro" value="em-observacao">
+                        Em Observação
+                    </label>
+
+                    <label class="label-filtro label-estavel" for="estavel">
+                        <span class="bolinha estavel-filter" aria-hidden="true"></span>
+                        <input type="radio" class="filtro-radio inativo" id="estavel" name="filtro" value="estavel">
+                        Estável
+                    </label>
+                </div>
+            </fieldset>
+        </section>
+
+        <section class="container-informacoes" aria-label="Resumo dos pacientes por status">
+            <article class="container-resumo-pacientes estado-total">
+                <img src="src/assets/pacientes.png" class="icone-resumo" alt="">
+                <h2 class="card-descricao">Total de Pacientes</h2>
+                <p class="number-pacientes total"></p>
+            </article>
+
+            <article class="container-resumo-pacientes estado-critico">
+                <img src="src/assets/atencao.png" class="icone-resumo" alt="">
+                <h2 class="card-descricao">Crítico</h2>
+                <p class="number-pacientes critico"></p>
+            </article>
+
+            <article class="container-resumo-pacientes estado-urgente">
+                <img src="src/assets/sinal-de-alerta.png" class="icone-resumo" alt="">
+                <h2 class="card-descricao">Urgente</h2>
+                <p class="number-pacientes urgente"></p>
+            </article>
+
+            <article class="container-resumo-pacientes estado-em-observacao">
+                <img src="src/assets/show.png" class="icone-resumo" alt="">
+                <h2 class="card-descricao">Em Observação</h2>
+                <p class="number-pacientes em-observacao"></p>
+            </article>
+
+            <article class="container-resumo-pacientes estado-estavel">
+                <img src="src/assets/sinal-de-visto.png" class="icone-resumo" alt="">
+                <h2 class="card-descricao">Estável</h2>
+                <p class="number-pacientes estavel"></p>
+            </article>
+        </section>
+
+        <section class="container-pacientes" aria-labelledby="titulo-lista-pacientes">
+            <header class="header-pacientes">
+                <h2 class="title-pacientes" id="titulo-lista-pacientes">Todos os Pacientes</h2>
+                <p class="page-subtitle"></p>
+            </header>
+
+            <div class="container-grid-cards-pacientes">
+                
+            </div>
+        </section>
+    </main>
+
+     <section class="modal-paciente inativo" id="modal-novo-paciente" aria-labelledby="titulo-form-paciente" aria-hidden="true">
+        <div class="modal-paciente__overlay" data-close-modal></div>
+
+        <div class="modal-paciente__content" role="dialog" aria-modal="true">
+            <header class="modal-paciente__header">
+                <div>
+                    <h2 id="titulo-form-paciente" class="modal-paciente__title">Novo Paciente</h2>
+                    <p class="modal-paciente__subtitle">Preencha os dados básicos para cadastrar um paciente no MedQueue.</p>
+                </div>
+
+                <button type="button" class="modal-paciente__close" aria-label="Fechar formulário" data-close-modal>
+                    &times;
+                </button>
+            </header>
+
+            <form class="form-paciente" id="form-novo-paciente" autocomplete="off">
+                <div class="form-paciente__group">
+                    <label for="patient-name">Nome completo</label>
+                    <input
+                        type="text"
+                        id="patient-name"
+                        name="patientName"
+                        placeholder="Ex: Carlos Eduardo Mendes"
+                        minlength="3"
+                        maxlength="120"
+                        required
+                    >
+                </div>
+
+                <div class="form-paciente__row">
+                    <div class="form-paciente__group">
+                        <label for="patient-age">Idade</label>
+                        <input
+                            type="number"
+                            id="patient-age"
+                            name="patientAge"
+                            placeholder="Ex: 67"
+                            min="0"
+                            max="130"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-paciente__row">
+                    <div class="form-paciente__group">
+                        <label for="patient-cpf">CPF</label>
+                        <input
+                            type="text"
+                            id="patient-cpf"
+                            name="patientCpf"
+                            placeholder="000.000.000-00"
+                            inputmode="numeric"
+                            maxlength="14"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-paciente__group">
+                        <label for="patient-location">Ala / Setor</label>
+                        <select name="patientLocation" id="patient-location" required>
+                            <option value="">Selecione a Ala / Setor</option>
+                            <option value="UTI">UTI</option>
+                            <option value="Cardiologia">Cardiologia</option>
+                            <option value="Pronto-Socorro">Pronto Socorro</option>
+                            <option value="Enfermaria">Enfermaria</option>
+                            <option value="Clínica Geral">Clínica Geral</option>
+                            <option value="Pediatria">Pediatria</option>
+                            <option value="Ortopedia">Ortopedia</option>
+                            <option value="Oncologia">Oncologia</option>
+                            <option value="Neurologia">Neurologia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-paciente__group">
+                        <label for="patient-phone">Telefone</label>
+                        <input
+                            type="tel"
+                            id="patient-phone"
+                            name="patientPhone"
+                            placeholder="(00) 00000-0000"
+                            maxlength="15"
+                        >
+                    </div>
+                </div>
+
+                
+
+                <div class="form-paciente__group">
+                    
+                    <label for="patient-status">Estado atual</label>
+                    <select id="patient-status" name="patientStatus" required>
+                        <option value="">Selecione o estado do paciente</option>
+                        <option value="critico">Crítico</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="em-observacao">Em Observação</option>
+                        <option value="estavel">Estável</option>
+                    </select>
+                </div>
+
+                <div class="form-paciente__group">
+                    <label for="patient-doctor">Médico responsável</label>
+                    <input
+                        type="text"
+                        id="patient-doctor"
+                        name="patientDoctor"
+                        placeholder="Ex: Richard Henrique"
+                        maxlength="120"
+                        required
+                    >
+                </div>
+
+                <div class="form-paciente__actions">
+                    <button type="button" class="button-secondary" data-close-modal>Cancelar</button>
+                    <button type="submit" class="button-paciente">Cadastrar Paciente</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
