@@ -1,0 +1,32 @@
+.header-main-container {
+    grid-area: header-main;
+    padding: 20px;
+}
+
+.header-main-container h1 {
+    margin-bottom: 4px;
+}
+
+.container-parametros {
+    grid-area: filtros;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 10px;
+}
+
+.container-informacoes {
+    grid-area: informacoes;
+    padding: 20px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.container-pacientes {
+    grid-area: pacientes;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
