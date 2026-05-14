@@ -1,0 +1,60 @@
+:root{
+    --background:#F8F9FA;
+    --background-cards: #FFFFFF;
+    --border: #CED4DA;
+    --primary-buttom: #218838;
+    --stats-critical: #DC3545;
+    --stats-urgent: #FD7E14;
+    --stats-observation: #FFC107;
+    --stats-estability:#28A745;
+    --subtitle:#b5b6b8;
+    --labels-filtro: #f8fbfd;
+    --text:#5e5e5e;
+    --text-white:#fffbfb;
+    --box-shadow: 0 1px 2px 1px #0000002d;
+    --cards-secundarios: #dfecf9;
+    --cards-hover: #b6ff94;
+    --card-cpf:#f1f1f1;
+}
+
+.estado-critico, .critico-filter, .label-critico {
+    --background-icon:#dc35466a;
+    --card-estado:#fd667555;
+    --background-label:#ffb5b5c6;
+    --number-color: var(--stats-critical);
+}
+
+.estado-urgente, .urgente-filter, .label-urgente {
+    --background-icon:#fd7d1469;
+    --card-estado:#fd7d143f;
+    --background-label:#ffcaaad7;
+    --number-color: var(--stats-urgent);
+}
+
+.estado-em-observacao , .observacao-filter, .label-observacao {
+    --background-icon:#ffc1075f;
+    --card-estado:#fed96947;
+    --background-label:#fff2b8ef;
+    --number-color: var(--stats-observation);
+}
+
+.estado-estavel, .estavel-filter, .label-estavel {
+    --background-icon:#7af196cc;
+    --card-estado:#91fbaa54;
+    --background-label:#caffc7bc;
+    --number-color: var(--stats-estability);
+}
+
+.estado-total, .label-todos {
+    --background-icon:#9ab8ffd8;
+    --background-label:#b9b1b1;
+    --number-color: #004cff;
+    --card-estado:#929292;
+}
+
+.icon-paciente {
+    --background-critico:#ff384cf0; 
+    --background-urgente:#ff9b4cf0;
+    --background-observacao:#ffde4cf0;
+    --background-estavel:#57ff84f0;
+}
