@@ -1,0 +1,37 @@
+.container-resumo-pacientes {
+    display: grid;
+    grid-template-areas:
+        "icone numero"
+        "descricao numero";
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+}
+
+.container-resumo-pacientes .number-pacientes {
+    grid-area: numero;
+    margin-left: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--number-color);
+}
+
+.icone-resumo,
+.img-com-tamanho-errado {
+    grid-area: icone;
+    border-radius: 10px;
+    padding: 3px;
+    height: 26px;
+    width: 26px;
+    background-color: var(--background-icon);
+}
+
+.card-descricao {
+    grid-area: descricao;
+    color: var(--subtitle);
+    font-size: 0.8rem;
+}
