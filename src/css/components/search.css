@@ -1,0 +1,32 @@
+.label-buscas {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 10px;
+    flex: 1 0 40%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+    transition: border 0.5s ease;
+    cursor: text;
+}
+
+.label-buscas:focus-within {
+    border: 1px solid var(--stats-estability);
+}
+
+#lupa-buscas {
+    width: 18px;
+    height: 18px;
+}
+
+#buscas {
+    width: 100%;
+    min-width: 0;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: var(--text);
+}
