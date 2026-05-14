@@ -1,27 +1,883 @@
-/* Fundação */
-@import url(base/reset.css);
-@import url(base/variables.css);
-@import url(base/global.css);
+@import url("./variables.css");
 
-/* Layout */
-@import url(layout/app-grid.css);
-@import url(layout/header.css);
-@import url(layout/sidebar.css);
-@import url(layout/main.css);
-@import url(layout/patients-grid.css);
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
-/* Componentes */
-@import url(components/search.css);
-@import url(components/filters.css);
-@import url(components/toolbar.css);
-@import url(components/buttons.css);
-@import url(components/summary-card.css);
-@import url(components/patient-card.css);
-@import url(components/pacienteForm.css);
+img {
+    max-width: 100%;
+    display: block;
+}
 
-/* Utilitários */
-@import url(utilities/accessibility.css);
-@import url(utilities/visibility.css);
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
 
-/* Animações */
-@import url(animations/keyframes.css);
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* ==============================
+   Base / Global
+   ============================== */
+
+body {
+    background-color: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.page-title {
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.page-subtitle {
+    font-size: small;
+    color: var(--subtitle);
+}
+
+.user-name {
+    margin-top: 5px;
+    font-size: small;
+    color: var(--text);
+}
+
+
+.bolinha {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    margin-top: 0.10px;
+    background-color: var(--number-color);
+}
+
+/* ==============================
+   Layout
+   ============================== */
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "aside main";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+}
+
+.header-container {
+    grid-area: header;
+}
+
+.aside-menu {
+    grid-area: aside;
+}
+
+.main-container {
+    grid-area: main;
+    display: grid;
+    grid-template-areas:
+        "header-main"
+        "filtros"
+        "informacoes"
+        "pacientes";
+    grid-template-rows: auto auto auto 1fr;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+}
+
+.perfil-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 1rem;
+    padding-right: 15px;
+}
+
+.container-user {
+    padding-left: 20px;
+    height: 100%;
+    border-left: 1px solid var(--border);
+}
+
+.notification-button,
+.aside-toggle,
+#aside-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.notification-button:hover{
+    background-color: var(--cards-hover);
+}
+
+.aside-icon-open,
+.aside-icon-fechado,
+#notificacao {
+    width: 23px;
+    height: 23px;
+}
+
+.aside-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 1rem;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+}
+
+.container-title-menu-aside {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-title-aside {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.page-subtitle-aside {
+    font-size: 0.7rem;
+    color: var(--subtitle);
+}
+
+.nav-menu-aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.title-nav {
+    font-size: 0.695rem;
+    color: var(--subtitle);
+}
+
+.lista-navegacao {
+    display: inline-flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.link-navegacao {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    transition: background-color 0.5s ease;
+}
+
+.link-navegacao a {
+    color: var(--text);
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.link-navegacao:hover,
+.link-navegacao.atual {
+    background-color: var(--cards-hover);
+}
+
+.perfil-container-aside {
+    display: flex;
+    margin-top: auto;
+    gap: 1rem;
+    padding: 10px;
+    width: 100%;
+    border-top: 1px solid var(--border);
+}
+
+.container-user-aside {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: var(--cards-secundarios);
+    box-shadow: var(--box-shadow);
+}
+
+@media (max-width: 760px) {
+    body {
+        grid-template-areas:
+            "header"
+            "main";
+        grid-template-columns: 1fr;
+    }
+
+    .aside-menu {
+        position: fixed;
+        z-index: 20;
+        inset: 56px auto 0 0;
+        width: min(260px, 85vw);
+    }
+}
+
+.header-main-container {
+    grid-area: header-main;
+    padding: 20px;
+}
+
+.header-main-container h1 {
+    margin-bottom: 4px;
+}
+
+.container-parametros {
+    grid-area: filtros;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 10px;
+}
+
+.container-informacoes {
+    grid-area: informacoes;
+    padding: 20px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.container-pacientes {
+    grid-area: pacientes;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.container-grid-cards-pacientes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 12px;
+}
+
+/* ==============================
+   Componentes
+   ============================== */
+
+.label-buscas {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 10px;
+    flex: 1 0 40%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+    transition: border 0.5s ease;
+    cursor: text;
+}
+
+.label-buscas:focus-within {
+    border: 1px solid var(--stats-estability);
+}
+
+#lupa-buscas {
+    width: 18px;
+    height: 18px;
+}
+
+#buscas {
+    width: 100%;
+    min-width: 0;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: var(--text);
+}
+
+.container-filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 20px;
+    border: 0.5px solid var(--border);
+    border-radius: 15px;
+    background-color: var(--background-cards);
+}
+
+.container-parametros-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.label-filtro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 7px;
+    background-color: var(--labels-filtro);
+    border-radius: 15px;
+    font-size: 0.785rem;
+}
+
+.title-filtro {
+    font-size: 0.865rem;
+    color: var(--text);
+}
+
+.filtro-radio {
+    height: 25px;
+    width: 10px;
+}
+
+#btn-filtro,
+.btn-filtro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 1 auto;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 13px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-cards);
+}
+
+#btn-filtro img,
+.btn-filtro img {
+    width: 18px;
+    height: 18px;
+}
+
+.click {
+    background-color: var(--cards-hover) !important;
+    border: 1px solid var(--primary-buttom);
+    color: var(--number-color);
+}
+
+#btn-toggle {
+    border: none;
+    font-size: 0.875rem;
+    color: var(--text);
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+}
+
+.container-parametros-filtros .critico-filter,
+.container-parametros-filtros .urgente-filter,
+.container-parametros-filtros .observacao-filter,
+.container-parametros-filtros .estavel-filter {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    margin-top: 0.10px;
+    background-color: var(--number-color);
+}
+
+.label-todos,
+.label-critico,
+.label-urgente,
+.label-estavel,
+.label-observacao {
+    border: 1px solid var(--border);
+    transition: background-color 0.4s ease-in, border-color 0.4s ease, color 0.4s ease-in-out;
+}
+
+.label-filtro:hover,
+.label-filtro:focus-within {
+    background-color: var(--background-label);
+    border: 2px solid var(--number-color);
+    color: var(--number-color);
+    font-weight: 700;
+}
+
+.toolbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.toolbar {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background-color: var(--background-cards);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    height: 48px;
+}
+
+.toolbar input[type="radio"] {
+    display: none;
+}
+
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 100%;
+    cursor: pointer;
+    color: var(--text);
+    transition: background-color 0.5s ease;
+}
+
+.icon {
+    width: 22px;
+    height: auto;
+}
+
+.toggle-btn .icon-active {
+    display: none;
+}
+
+.toolbar input[type="radio"]:checked + .toggle-btn {
+    background-color: var(--primary-buttom);
+}
+
+.toolbar input[type="radio"]:checked + .toggle-btn .icon-inactive {
+    display: none;
+}
+
+.toolbar input[type="radio"]:checked + .toggle-btn .icon-active {
+    display: block;
+}
+
+.container-adicionar-paciente,
+.button-paciente {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex: 1 0 auto;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: var(--primary-buttom);
+    box-shadow: var(--box-shadow);
+    color: var(--text-white);
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.container-adicionar-paciente img,
+.button-paciente img {
+    height: 20px;
+    width: 20px;
+}
+
+.button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background-color: var(--background-cards);
+    color: var(--text);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.container-resumo-pacientes {
+    display: grid;
+    grid-template-areas:
+        "icone numero"
+        "descricao numero";
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+}
+
+.container-resumo-pacientes .number-pacientes {
+    grid-area: numero;
+    margin-left: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--number-color);
+}
+
+.icone-resumo,
+.img-com-tamanho-errado {
+    grid-area: icone;
+    border-radius: 10px;
+    padding: 3px;
+    height: 26px;
+    width: 26px;
+    background-color: var(--background-icon);
+}
+
+.card-descricao {
+    grid-area: descricao;
+    color: var(--subtitle);
+    font-size: 0.8rem;
+}
+
+.header-pacientes {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.title-pacientes {
+    font-size: 1rem;
+}
+
+.subtitle-pacientes {
+    font-size: 0.865rem;
+    color: var(--subtitle);
+}
+
+.card-paciente {
+    background-color: var(--background-cards);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-estado-critico {
+    border-left: 5px solid var(--stats-critical);
+}
+
+.card-estado-urgente {
+    border-left: 5px solid var(--stats-urgent);
+}
+
+.card-estado-em-observacao {
+    border-left: 5px solid var(--stats-observation);
+}
+
+.card-estado-estavel {
+    border-left: 5px solid var(--stats-estability);
+}
+
+.critico .icone-paciente,
+.urgente .icone-paciente,
+.em-observacao .icone-paciente,
+.observacao .icone-paciente,
+.estavel .icone-paciente {
+    width: 34px;
+    height: 34px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: var(--background-icon);
+}
+
+.header-card-paciente {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+}
+
+.header-card-paciente > div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.header-card-paciente .paciente-name {
+    font-size: 0.965rem;
+    color: var(--text);
+}
+
+.header-card-paciente .paciente-info {
+    font-size: 0.765rem;
+    color: var(--subtitle);
+}
+
+.btn-remove {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.btn-remove:hover {
+    background-color: var(--card-cpf);
+}
+
+.card-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding-left: 10px;
+}
+
+.paciente-cpf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: var(--card-cpf);
+    height: auto;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.paciente-cpf p {
+    font-size: 0.665em;
+}
+
+.paciente-cpf img {
+    height: 0.775rem;
+}
+
+.paciente-estado {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background-color: var(--card-estado);
+    padding: 7px 10px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 100%;
+    border: 1px solid var(--background-icon);
+}
+
+.paciente-estado p {
+    font-size: 0.695rem;
+    color: var(--number-color);
+    font-weight: 700;
+}
+
+.footer-card-paciente {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    font-size: 0.777em;
+    border-top: 1px solid var(--border);
+    color: var(--subtitle);
+}
+
+.empty-message {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--background-cards);
+    box-shadow: var(--box-shadow);
+    color: var(--subtitle);
+}
+
+.modal-paciente {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-paciente__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-paciente__content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 520px);
+    height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: var(--background-cards);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.18);
+    animation: slideInRight 0.25s ease-out;
+}
+
+.modal-paciente__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-paciente__title {
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.modal-paciente__subtitle {
+    font-size: small;
+    color: var(--subtitle);
+}
+
+.modal-paciente__close {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 1.4rem;
+}
+
+.modal-paciente__close:hover {
+    background-color: var(--cards-hover);
+}
+
+.form-paciente {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-paciente__row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.form-paciente__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-paciente__group label {
+    font-size: 0.865rem;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.form-paciente__group input,
+.form-paciente__group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    outline: none;
+    background-color: var(--background-cards);
+    color: var(--text);
+}
+
+.form-paciente__group input:focus,
+.form-paciente__group select:focus {
+    border: 1px solid var(--stats-estability);
+}
+
+.form-paciente__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 520px) {
+    .modal-paciente__content {
+        width: 100%;
+    }
+
+    .form-paciente__actions {
+        justify-content: stretch;
+    }
+
+    .form-paciente__actions button {
+        flex: 1 1 100%;
+    }
+}
+
+/* ==============================
+   Utilitários
+   ============================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary-buttom);
+    outline-offset: 3px;
+}
+
+.inativo {
+    display: none !important;
+}
+
+/* ==============================
+   Animações
+   ============================== */
+
+@keyframes click {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#btn-filtro.animar,
+.animar {
+    animation: click 200ms ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
