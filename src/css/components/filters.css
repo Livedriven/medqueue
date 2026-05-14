@@ -1,0 +1,98 @@
+.container-filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 20px;
+    border: 0.5px solid var(--border);
+    border-radius: 15px;
+    background-color: var(--background-cards);
+}
+
+.container-parametros-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.label-filtro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 7px;
+    background-color: var(--labels-filtro);
+    border-radius: 15px;
+    font-size: 0.785rem;
+}
+
+.title-filtro {
+    font-size: 0.865rem;
+    color: var(--text);
+}
+
+.filtro-radio {
+    height: 25px;
+    width: 10px;
+}
+
+#btn-filtro,
+.btn-filtro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 1 auto;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 13px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-cards);
+}
+
+#btn-filtro img,
+.btn-filtro img {
+    width: 18px;
+    height: 18px;
+}
+
+.click {
+    background-color: var(--cards-hover) !important;
+    border: 1px solid var(--primary-buttom);
+    color: var(--number-color);
+}
+
+#btn-toggle {
+    border: none;
+    font-size: 0.875rem;
+    color: var(--text);
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+}
+
+.container-parametros-filtros .critico-filter,
+.container-parametros-filtros .urgente-filter,
+.container-parametros-filtros .observacao-filter,
+.container-parametros-filtros .estavel-filter {
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    margin-top: 0.10px;
+    background-color: var(--number-color);
+}
+
+.label-todos,
+.label-critico,
+.label-urgente,
+.label-estavel,
+.label-observacao {
+    border: 1px solid var(--border);
+    transition: background-color 0.4s ease-in, border-color 0.4s ease, color 0.4s ease-in-out;
+}
+
+.label-filtro:hover,
+.label-filtro:focus-within {
+    background-color: var(--background-label);
+    border: 2px solid var(--number-color);
+    color: var(--number-color);
+    font-weight: 700;
+}
