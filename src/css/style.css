@@ -1,0 +1,27 @@
+/* Fundação */
+@import url(base/reset.css);
+@import url(base/variables.css);
+@import url(base/global.css);
+
+/* Layout */
+@import url(layout/app-grid.css);
+@import url(layout/header.css);
+@import url(layout/sidebar.css);
+@import url(layout/main.css);
+@import url(layout/patients-grid.css);
+
+/* Componentes */
+@import url(components/search.css);
+@import url(components/filters.css);
+@import url(components/toolbar.css);
+@import url(components/buttons.css);
+@import url(components/summary-card.css);
+@import url(components/patient-card.css);
+@import url(components/pacienteForm.css);
+
+/* Utilitários */
+@import url(utilities/accessibility.css);
+@import url(utilities/visibility.css);
+
+/* Animações */
+@import url(animations/keyframes.css);
