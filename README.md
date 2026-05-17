@@ -1,7 +1,7 @@
 # 🏥 MedQueue
 
 ## 🎯 Sobre o Desafio
-Este projeto foi desenvolvido durante o **#7DaysOfCode** da [Alura](https://www.alura.com.br)! Uma iniciativa de 7 dias de desafios práticos para aprimorar conhecimentos em **JavaScript**, estruturas de dados e manipulação do DOM.
+Este projeto foi desenvolvido durante o **#7DaysOfCode** da [Alura](https://www.alura.com.br)! Uma iniciativa de 7 dias de desafios práticos para aprimorar conhecimentos em **JavaScript**, estruturas de dados com a opção de implementar uma interfaçe grafica.
 
 O desafio específico para este projeto foi focado em **Estruturas de Dados**, como parte da iniciativa [7 Days of Code da Alura](https://7daysofcode.io/matricula/estruturas-de-dados).
 
