@@ -86,11 +86,7 @@ src/
 │   └── IndexedDB.js
 │
 ├── css/
-│   ├── animations/
-│   ├── base/
-│   ├── components/
-│   ├── layout/
-│   ├── utilities/
+│   ├── variables.css
 │   └── style.css
 │
 ├── assets/
